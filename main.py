@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 n = 8
 a1 = 1 / n
-a2 = round(np.random.rand() * 0.5, 2)
+a2 = round(np.random.rand() * (1 - a1 * 1.2), 3)
 a3 = 1 - a1 - a2
 
 # Матрица переходных вероятностей
@@ -35,28 +35,25 @@ while True:
     if max(abs(np.subtract(iterationP, probabilitiesLimit))) < precision:
         break
 
-print("Iterations:", n)
-print("Start Probabilities =", pStart)
-print("Iteration Probability Vector =", iterationP)
-print("Theoretical Probability =", probabilitiesLimit)
+print("Шагов:", n)
+print("Начальная вероятность =", pStart)
+print("Полученный вектор =", iterationP)
+print("Теоритеческий (через систему) =", probabilitiesLimit)
 
-# Вторая задача
 P = [ [0.4, 0.3, 0],
       [0.5, 0.6, 0.75],
       [0.1, 0.1, 0.25] ]
 
 birthCoef = [51, 39, 17]
 deathCoef = [24, 17, 7]
-# Численность (млн. человек)
+
 startPopulation = 658.9
 
 a = [0, 0 ,0]
 for s in range(3):
     a[s] = (1000 + birthCoef[s] - deathCoef[s]) / 1000
 
-
-sumTemp = sum(birthCoef)
-startOrderMoment = [x / sumTemp for x in birthCoef]
+startOrderMoment = [x / sum(birthCoef) for x in birthCoef]
 prevMoment = startOrderMoment
 nextMoment = startOrderMoment
 
